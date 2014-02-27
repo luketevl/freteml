@@ -36,6 +36,8 @@
 
  <div class="col-lg-3">
     <div class="input-group">
+
+	  <span class="input-group-addon">CEP</span>
 	  <input type="text" class="form-control" id='cep' name="cep" placeholder="00000-000" />
 	  	<span class="input-group-btn">
 	    	<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-usd"></span> Calcular Frete</button>
@@ -69,7 +71,7 @@ class FreteMl {
 
 
 					}
-				   	 echo "<pre>"; print_r($xml); echo "</pre>";
+				 #  	 echo "<pre>"; print_r($xml); echo "</pre>";
 
 				   	break;
 			   }
