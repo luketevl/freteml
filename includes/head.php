@@ -27,9 +27,41 @@
 		Latest compiled and minified JavaScript -->
 		<script src="resources/js/bootstrap.min.js"></script>
 
-		<script>
-			$(document).ready(function(){
-				$('#cep').mask('99999-999');
-			});
-		</script>
+		<script src="resources/js/funcoes.js"></script>
+
+<script>
+		$(document).ready(function(){
+		$("#calcularFrete").click(function(){
+    var cep_cli = $('#cep').val();
+    if(cep_cli.length == 9){
+	    $.ajax({
+			  type: "GET",
+			  url: "FreteML.php",
+			  data: { cep: cep_cli , cod_prod :  <?php echo $_GET['cod_prod'];?> }
+			})
+			  .success(function( msg ) {
+			  	if(msg.indexOf('bs-callout-warning') != '-1'){
+					$('#servicoInfo').hide();
+					$('#camposFrete').hide();
+					$('#servicoErro').show();
+					$('#carrega').hide();
+					$('#erros').show();
+					$('#erros').html(msg);
+					$('btnTentarNovamente').show();
+			  	}
+			  	else{
+			  		$('btnTentarNovamente').hide();
+			  		$('#carrega').show();
+				  	$('#carrega').html(msg);	
+			  	}
+			    
+		});
+    }
+    else{
+    	$('#grupoCep').addClass('has-error');
+    	$('#cep').focus();
+    }
+});
+		});
+</script>
 	</head>
