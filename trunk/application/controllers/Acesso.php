@@ -22,12 +22,16 @@ class Acesso extends CI_Controller{
 	public function cadastrar(){
 		$feedback = array();
 	 	$_data = $this->input->post();
-	 	// echo "<pre>"; print_r($_data); echo "</pre>";
+	 	//echo "<pre>"; print_r($_data); echo "</pre>";
 	 	$u = new Usuario();
-	 	$u = $u->verifica_login($_data['email'], $_data['senha']);
+	 	$u = $u->verifica_email($_data['email']);
 //	 	echo "<pre>"; print_r($u); echo "</pre>";
 	 	if($u->exists()){
 	 		echo 'O e-mail informado já está cadastrado';
+	 	}
+	 	else{
+			echo base_url();
+	 		mkdir(base_url().'files/pasta/');
 	 	}
 	 //	echo json_encode($feedback);
 	 }
