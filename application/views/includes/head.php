@@ -10,7 +10,7 @@
 		<title>Calculador de Frete</title>
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 	    <script src="<?php echo base_url()?>resources/js/jquery.maskedinput.js" type="text/javascript"></script>
 
@@ -19,15 +19,19 @@
 
 		<link rel="stylesheet" href="<?php echo base_url()?>resources/css/doc.css">
 
-		<!-- Optional theme -->
+		<!-- Optional theme
 		<link rel="stylesheet" href="<?php echo base_url()?>resources/css/bootstrap-theme.min.css">
+		 -->
 
 		<link rel="stylesheet" href="<?php echo base_url()?>resources/css/normalize.css">
 		<!-- 
 		Latest compiled and minified JavaScript -->
 		<script src="<?php echo base_url()?>resources/js/bootstrap.min.js"></script>
 
+		<script src="<?php echo base_url()?>resources/js/noty/packaged/jquery.noty.packaged.js"></script>
+
 		<script src="<?php echo base_url()?>resources/js/funcoes.js"></script>
+
 
 <script>
 		$(document).ready(function(){
