@@ -3,7 +3,7 @@
 ?>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('*').tooltip();
+		$('a').tooltip();
 		$('#login').hide();
 		$('#cadastrar').hide();
 		$('a#openLogin').click(function(){

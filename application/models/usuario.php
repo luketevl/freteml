@@ -134,6 +134,12 @@ class Usuario extends DataMapper {
  	return $u->get();
  }
 
+function verifica_email($email){
+ 	$u = new Usuario();
+ 	$u->where('email_usu',$email);
+ 	return $u->get();
+ }
+
 }
 
 /* End of file template.php */
