@@ -140,6 +140,17 @@ function verifica_email($email){
  	return $u->get();
  }
 
+function inserir_usuario($dados){
+	$u = new Usuario();
+	$u->ativo = 1;
+	$u->nome_usu= $dados['nome'];
+	$u->email_usu=$dados['email'];
+	$u->senha_usu=$dados['senha'];
+	$u->dt_criacao_usu = date('Y-m-d h:m:s');
+	$u->save();
+	return $u;	
+}
+
 }
 
 /* End of file template.php */
