@@ -15,7 +15,35 @@
 			$('#login').hide(500);
 		});
 
-		$('#btnEntrar').click(function(){
+/*
+		$("#login").validate({
+			submitHandler: function(form){
+			var formulario = $('form#login');
+			var dados = formulario.serialize();
+			 $.ajax({
+		          type: "POST",
+		          url: "acesso/cadastrar",
+		          data: dados
+		        })
+		          .success(function( msg ) {
+		        	var n = noty({text: msg, type: 'error'});
+		          });
+				return false;
+			}
+		});
+*/
+
+		$('input[name="email"]').keypress(function(){
+			//$(this).parent('#group-email');
+			//console.log($(this).parent('#group-email'));
+			console.log(this);
+			var elemento = $(this).parents('.form-group');
+			console.log(elemento);
+			$(elemento).removeClass('has-error');
+		});
+
+
+		$('#login').submit(function(event){
 			var formulario = $('form#login');
 			var dados = formulario.serialize();
 	        $.ajax({
@@ -24,12 +52,14 @@
 	          data: dados
 	        })
 	          .success(function( msg ) {
-	          		var n = noty({text: msg, type: 'error'});
-	          });
+          		var n = noty({text: msg, type: 'error'});
 
+	          });
+	          event.preventDefault;
+        	  return false;
 			});
 
-		$('#btnCadastrar').click(function(){
+		$('#cadastrar').submit(function(event){
 			var formulario = $('form#cadastrar');
 			var dados = formulario.serialize();
 	        $.ajax({
@@ -39,8 +69,11 @@
 	        })
 	          .success(function( msg ) {
 	        	var n = noty({text: msg, type: 'error'});
+	        	$('#group-email').addClass('has-error');
+	        	$('#group-email > input[name="email"]').focus();
 	          });
-
+			  event.preventDefault;
+        	  return false;
 			});
 
 	});
@@ -53,12 +86,12 @@
  
 
 		<form class="form-horizontal" role="form" id="login" method="POST">
-			<div class="form-group">
+			<div class="form-group" id="group-email-login">
 				<div class="input-group">
 				  <span class="input-group-addon">
 					  <img src="resources/img/email.png" width="14px" height="14px" />
 				  </span>
-				  <input type="email" class="form-control" placeholder="Email" name="email">
+				  <input type="email" class="form-control" placeholder="Email" name="email" required>
 				</div>
 			</div>
 
@@ -67,11 +100,11 @@
 				  <span class="input-group-addon">
 				  	<img src="resources/img/lock.png" width="14px" height="14px" />
 				  </span>
-				  <input type="password" class="form-control" placeholder="Senha" name="senha">
+				  <input type="password" class="form-control" placeholder="Senha" name="senha" required>
 				</div>
 			</div>
 			<div class="form-group">
-		      <button type="button" class="btn btn-default" id="btnEntrar">Entrar</button>
+		      <button type="submit" class="btn btn-default" id="btnEntrar">Entrar</button>
 		    </div>
 		</form>
 	</hgroup>
@@ -86,16 +119,16 @@
 				  <span class="input-group-addon">
 				  	<span class="glyphicon glyphicon-user"></span>
 				  </span>
-				  <input type="text" class="form-control" placeholder="Nome" name="nome" >
+				  <input type="text" class="form-control" placeholder="Nome" name="nome" required>
 				</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group" id="group-email">
 				<div class="input-group">
 				  <span class="input-group-addon">
 				  	<img src="resources/img/email.png" width="14px" height="14px" />
 				  </span>
-				  <input type="email" class="form-control" placeholder="Email" name="email">
+				  <input type="email" class="form-control" placeholder="Email" name="email" required>
 				</div>
 			</div>
 
@@ -104,7 +137,7 @@
 				  <span class="input-group-addon">
 				  	<img src="resources/img/lock.png" width="14px" height="14px" />
 				  </span>
-				  <input type="password" class="form-control" placeholder="Senha" name="senha">
+				  <input type="password" class="form-control" placeholder="Senha" name="senha" required>
 				</div>
 			</div>
 			<div class="form-group">
@@ -112,11 +145,11 @@
 				  <span class="input-group-addon">
 				  	<img src="resources/img/lock.png" width="14px" height="14px" />
 				  </span>
-				  <input type="password" class="form-control" placeholder="Confirmar senha" name="senha" >
+				  <input type="password" class="form-control" placeholder="Confirmar senha" name="senha" required>
 				</div>
 			</div>
 			<div class="form-group">
-		      <button type="button" class="btn btn-default" id="btnCadastrar" >Cadastrar</button>
+		      <button type="submit" class="btn btn-default" id="btnCadastrar" >Cadastrar</button>
 		    </div>
 		</form>
 </hgroup>
