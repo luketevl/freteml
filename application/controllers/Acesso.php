@@ -30,8 +30,8 @@ class Acesso extends CI_Controller{
 	 		echo 'O e-mail informado já está cadastrado';
 	 	}
 	 	else{
-			echo base_url();
-	 		mkdir(base_url().'files/pasta/');
+	 		$u = $u->inserir_usuario($_data);
+	 		mkdir('files/'.$u->id,0777);
 	 	}
 	 //	echo json_encode($feedback);
 	 }
