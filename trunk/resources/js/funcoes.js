@@ -1,4 +1,42 @@
 $(document).ready(function(){
+	/*
+	$('#file-csv').MultiFile({
+		afterFileAppend: function(element, value, master_element){ 
+			alert('Apeend');
+			 $.ajax({
+	          type: "POST",
+	          url: "upload/upload_arquivo",
+	          data: $('form-csv').serialize()
+	        })
+	          .success(function( msg ) {
+          		var n = noty({text: msg, type: 'error'});
+
+	          });
+			
+		}
+	});
+*/
+
+$("#file-csv").uploadFile({
+	url:"upload/upload_arquivo",
+	fileName:"myfile",
+	 dragDrop: true,
+	 returnType: "json",
+	 showDelete: true,
+	 deleteCallback: function (data, pd) {
+     for (var i = 0; i < data.length; i++) {
+         $.post("delete.php", {op: "delete",name: data[i]},
+             function (resp,textStatus, jqXHR) {
+                 //Show Message	
+                 alert("File Deleted");
+             });
+     }
+	     pd.statusbar.hide(); //You choice.
+}
+	});
+
+
+	$(":file").bootstrapFileInput();
 	$('#cep').mask('99999-999');
 	$('#erros').hide();
 	$('#btnTentarNovamente').hide();
