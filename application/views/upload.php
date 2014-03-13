@@ -11,16 +11,23 @@
 <blockquote class="bs-callout bs-callout-warning">
     <h4>Passo a Passo</h4>
     <ol>
-    <li> Verifique se o conteudo do seu arquivo esta na ordem certa <span class="glyphicon glyphicon-star"></span>
-    </li>
-    <li> Insira arquivos no formato <abbr title="O CSV é um implementação particular de arquivos de texto separados por um delimitador" ><code>CSV</code></abbr>
-    </li>
-    <li> Clique no botao abaixo para inserir o arquivo.
-    </li>
-    
+	    <li> Verifique se o conteúdo do seu arquivo esta na ordem certa <span class="glyphicon glyphicon-star"></span>
+	    </li>
+	    <li> Insira arquivos no formato <abbr title="O CSV é um implementação particular de arquivos de texto separados por um delimitador" ><code>CSV</code></abbr>
+	    </li>
+	    <li> Clique no botão abaixo para inserir o arquivo.
+	    </li>
     </ol> 
 </blockquote>
-
-
+<form class="form-horizontal" role="form" id="form-upload" method="POST" enctype="multipart/form-data" >
+	<div class="container-fluid">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3">
+	          </button>
+	          <a class="navbar-brand" href="#">Local do Arquivo</a>
+	        </div>
+		         <input type="file" style="left: -247.5px; top: 0px;" title="<span class='glyphicon glyphicon-plus'></span> Escolher Arquivo" accept="csv" id="file-csv" />
+	      </div>
+ </form>
 	</body>
 </html>
