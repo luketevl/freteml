@@ -17,9 +17,13 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$this->load->view('login_vw');
+	public function index(){
+		if(!empty($this->session->userdata['id_ent'])){
+			redirect('upload');
+		}
+		else{
+			$this->load->view('login_vw');
+		}
 	}
 }
 
