@@ -68,9 +68,16 @@
 	          data: dados
 	        })
 	          .success(function( msg ) {
-	        	var n = noty({text: msg, type: 'error'});
-	        	$('#group-email').addClass('has-error');
-	        	$('#group-email > input[name="email"]').focus();
+	          	var obj = jQuery.parseJSON(msg);
+	          	if(obj.cod == '-1'){
+		        	var n = noty({text: obj.msg, type: 'error'});
+		        	$('#group-email').addClass('has-error');
+		        	$('#group-email > input[name="email"]').focus();
+	          	}
+	          	else if(obj.cod == '1'){
+	          		var n = noty({text: obj.msg, type: 'success'});
+	          		setInterval(function(){window.location ='upload';},3000);
+	          	}
 	          });
 			  event.preventDefault;
         	  return false;

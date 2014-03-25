@@ -10,8 +10,7 @@
 	<title>Bem Vindo - FlyMoto</title>
 		
    <?php
-		$this->load->view('includes/css');
-		$this->load->view('includes/js');
+		$this->load->view('includes/head');
    ?>
 
 </head>
@@ -83,12 +82,11 @@
 	</nav>
 </header>
 <div id="camposEscondidos">
-<input type="hidden" name="latitude_cli_entra" id="latitude_cli_entra" />
-<input type="hidden" name="longitude_cli_entra" id="longitude_cli_entra" />
-<?php 
-//	<input type="hidden" name="usa_sessao" id="longitude_cli_entra" />
-
-?>
+	<input type="hidden" name="latitude_cli_entra"  id="latitude_cli_entra" />
+	<input type="hidden" name="longitude_cli_entra" id="longitude_cli_entra" />
+	<?php 
+	//	<input type="hidden" name="usa_sessao" id="longitude_cli_entra" />
+	?>
 </div>
 <section id="centro">
 

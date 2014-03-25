@@ -22,6 +22,6 @@ class Login{
 	}
 	public function deslogar(){
 		$this->session->sess_destroy();
-		redirect("Acesso");
+		redirect("welcome");
 	}
 }

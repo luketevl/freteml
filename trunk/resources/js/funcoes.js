@@ -28,7 +28,7 @@ $("#file-csv").uploadFile({
          $.post("delete.php", {op: "delete",name: data[i]},
              function (resp,textStatus, jqXHR) {
                  //Show Message	
-                 alert("File Deleted");
+                 alert("Arquivo Deletado");
              });
      }
 	     pd.statusbar.hide(); //You choice.
