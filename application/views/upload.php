@@ -62,7 +62,7 @@
 	    		<td>{altura}</td>
 	    		<td>{largura}</td>
 	    		<td>{diametro}</td>
-		    	<td><a href="{calculadora}"><span class="glyphicon glyphicon-link"></span>  Gerar </a> </td>
+		    	<td><a href="<?php echo base_url();?>{calculadora}"><span class="glyphicon glyphicon-link"></span>  Gerar </a> </td>
 	    	</tr>
 	    {/linhas}
     </tbody>

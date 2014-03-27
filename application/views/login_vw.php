@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('a').tooltip();
-		$('#login').hide();
+		//$('#login').hide();
 		$('#cadastrar').hide();
 		$('a#openLogin').click(function(){
 			$('#login').show(600);
@@ -27,12 +27,27 @@
 		        })
 		          .success(function( msg ) {
 		        	var n = noty({text: msg, type: 'error'});
+		        	removeTodos();
 		          });
 				return false;
 			}
 		});
 */
-
+	function removeTodos(){
+	}
+	
+	function feedback(msg){
+		var obj = jQuery.parseJSON(msg);
+		if(obj.cod == '-1'){
+        	var n = noty({text: obj.msg, type: 'error', shadow: false, styling: "bootstrap" , hide: true, delay: 500});
+        	removeTodos();
+	          	}
+      	else if(obj.cod == '1'){
+      		var n = noty({text: obj.msg, type: 'success',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
+  			removeTodos();
+      	}
+      	return obj.cod;
+}
 		$('input[name="email"]').keypress(function(){
 			//$(this).parent('#group-email');
 			//console.log($(this).parent('#group-email'));
@@ -42,46 +57,89 @@
 			$(elemento).removeClass('has-error');
 		});
 
+$('#login_senha').keypress(function(){
+			
+			console.log($(this).parent('#group-email'));
+			var elemento = $(this).parent('#group_login_senha');
+			if($('#login_senha').val().length >= 5){
+				$(elemento).removeClass('has-error');
+				
+			}
+		});
+
+$('#cadastro_senha').keypress(function(){
+			
+			//console.log($(this).parent('#group-email'));
+			
+			var elemento = $(this).parent('#group_cadastrar_senha');
+			if($('#cadastro_senha').val().length >= 5){
+				$(elemento).removeClass('has-error');
+			}
+		});
 
 		$('#login').submit(function(event){
 			var formulario = $('form#login');
 			var dados = formulario.serialize();
+			if($('#login_senha').val().length < 6){
+				var n = noty({text: 'Senha deve conter no mínimo 6 caracteres.', type: 'error',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
+				removeTodos();
+				$('#group_login_senha').addClass('has-error');
+			        $('#login_senha').focus(function(){
+			        	 $(this).select();
+			        	});
+			}
+			else {
+			$('#group_login_senha').addClas
 	        $.ajax({
 	          type: "POST",
 	          url: "acesso/logar",
 	          data: dados
 	        })
 	          .success(function( msg ) {
-          		var n = noty({text: msg, type: 'error'});
-
+	          	feedback(msg);
+          		//var n = noty({text: msg, type: 'error',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
 	          });
 	          event.preventDefault;
+			}
         	  return false;
 			});
 
 		$('#cadastrar').submit(function(event){
 			var formulario = $('form#cadastrar');
 			var dados = formulario.serialize();
-	        $.ajax({
-	          type: "POST",
-	          url: "acesso/cadastrar",
-	          data: dados
-	        })
-	          .success(function( msg ) {
-	          	var obj = jQuery.parseJSON(msg);
-	          	if(obj.cod == '-1'){
-		        	var n = noty({text: obj.msg, type: 'error'});
-		        	$('#group-email').addClass('has-error');
-		        	$('#group-email > input[name="email"]').focus();
-	          	}
-	          	else if(obj.cod == '1'){
-	          		var n = noty({text: obj.msg, type: 'success'});
-	          		setInterval(function(){window.location ='upload';},3000);
-	          	}
-	          });
-			  event.preventDefault;
-        	  return false;
-			});
+			if($('#cadastro_senha').val().length < 6){
+				var n = noty({text: 'Senha deve conter no mínimo 6 caracteres.', type: 'error',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
+				removeTodos();
+				$('#group_cadastrar_senha').addClass('has-error');
+			        $('#cadastro_senha').focus(function(){
+			        	 $(this).select();
+			        	});
+			}
+			else{
+				if($('#cadastro_senha_rp').val() != $('#cadastro_senha').val()){
+					var n = noty({text: 'A confirmação da senha digitada não é igual a senha.', type: 'error',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
+				}else{
+			        $.ajax({
+			          type: "POST",
+			          url: "acesso/cadastrar",
+			          data: dados
+			        })
+			          .success(function( msg ) {
+			          	if(feedback(msg)){
+						setInterval(function(){
+			          		document.location = 'upload';
+								},3500);
+			          	}
+						$('#group-email').addClass('has-error');
+				        $('#group-email > input[name="email"]').focus(function(){
+				        	 $(this).select();
+				        	});
+			          });
+					  event.preventDefault;
+				}
+			}
+		        	  return false;
+				});
 
 	});
 
@@ -96,18 +154,18 @@
 			<div class="form-group" id="group-email-login">
 				<div class="input-group">
 				  <span class="input-group-addon">
-					  <img src="resources/img/email.png" width="14px" height="14px" />
+					  <img src="<?php echo base_url();?>resources/img/email.png" width="14px" height="14px" />
 				  </span>
 				  <input type="email" class="form-control" placeholder="Email" name="email" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<div class="input-group">
+				<div class="input-group" id="group_login_senha">
 				  <span class="input-group-addon">
-				  	<img src="resources/img/lock.png" width="14px" height="14px" />
+				  	<img src="<?php echo base_url();?>resources/img/lock.png" width="14px" height="14px" />
 				  </span>
-				  <input type="password" class="form-control" placeholder="Senha" name="senha" required>
+				  <input type="password" class="form-control" placeholder="Senha" name="senha" id="login_senha" required minlength="6" >
 				</div>
 			</div>
 			<div class="form-group">
@@ -133,26 +191,26 @@
 			<div class="form-group" id="group-email">
 				<div class="input-group">
 				  <span class="input-group-addon">
-				  	<img src="resources/img/email.png" width="14px" height="14px" />
+				  	<img src="<?php echo base_url();?>resources/img/email.png" width="14px" height="14px" />
 				  </span>
 				  <input type="email" class="form-control" placeholder="Email" name="email" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<div class="input-group">
+				<div class="input-group"  id="group_cadastrar_senha">
 				  <span class="input-group-addon">
-				  	<img src="resources/img/lock.png" width="14px" height="14px" />
+				  	<img src="<?php echo base_url();?>resources/img/lock.png" width="14px" height="14px" />
 				  </span>
-				  <input type="password" class="form-control" placeholder="Senha" name="senha" required>
+				  <input type="password" class="form-control" placeholder="Senha" name="senha" id="cadastro_senha" minlength="6" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="input-group">
+				<div class="input-group" id="group_cadastrar_senharp">
 				  <span class="input-group-addon">
-				  	<img src="resources/img/lock.png" width="14px" height="14px" />
+				  	<img src="<?php echo base_url();?>resources/img/lock.png" width="14px" height="14px" />
 				  </span>
-				  <input type="password" class="form-control" placeholder="Confirmar senha" name="senha" required>
+				  <input type="password" class="form-control" placeholder="Confirmar senha" name="senha" id="cadastro_senha_rp" minlength="6" required>
 				</div>
 			</div>
 			<div class="form-group">

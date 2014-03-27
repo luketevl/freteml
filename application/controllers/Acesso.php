@@ -2,8 +2,7 @@
 class Acesso extends CI_Controller{
  	
 	public function index(){
-		echo "oi";
-		echo "<pre>"; print_r($this->session->userdata); echo "</pre>";
+//		echo "<pre>"; print_r($this->session->userdata); echo "</pre>";
 		if(!empty($this->session->userdata['id_ent'])){
 			redirect('upload');
 		}
@@ -21,9 +20,10 @@ class Acesso extends CI_Controller{
 	 	if($u->exists()){
 	 	}
 	 	else {
-	 		echo 'Usuario ou senha incorretos';
+	 		$feedback['cod'] = '-1';
+	 		$feedback['msg'] = 'Usuário ou senha incorretos';
 	 	}
-	 //	echo json_encode($feedback);
+	 	echo json_encode($feedback);
 	 }
 
 	public function cadastrar(){
