@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$('a').tooltip();
 	/*
 	$('#file-csv').MultiFile({
 		afterFileAppend: function(element, value, master_element){ 

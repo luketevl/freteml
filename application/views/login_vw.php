@@ -3,7 +3,6 @@
 ?>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('a').tooltip();
 		//$('#login').hide();
 		$('#cadastrar').hide();
 		$('a#openLogin').click(function(){
@@ -27,24 +26,30 @@
 		        })
 		          .success(function( msg ) {
 		        	var n = noty({text: msg, type: 'error'});
-		        	removeTodos();
+		        	removeTodos(n);
 		          });
 				return false;
 			}
 		});
 */
-	function removeTodos(){
+	function removeTodos(n){
+		
 	}
 	
 	function feedback(msg){
 		var obj = jQuery.parseJSON(msg);
 		if(obj.cod == '-1'){
-        	var n = noty({text: obj.msg, type: 'error', shadow: false, styling: "bootstrap" , hide: true, delay: 500});
-        	removeTodos();
+        	var n = noty({text: obj.msg, type: 'error', shadow: false, styling: "bootstrap" , hide: true, delay: 500,
+			killer: true
+
+        });
+        	removeTodos(n);
 	          	}
       	else if(obj.cod == '1'){
-      		var n = noty({text: obj.msg, type: 'success',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
-  			removeTodos();
+      		var n = noty({text: obj.msg, type: 'success',shadow: false, styling: "bootstrap" , hide: true, delay: 500,
+      	killer: true
+		});
+  			removeTodos(n);
       	}
       	return obj.cod;
 }
@@ -82,21 +87,24 @@ $('#cadastro_senha').keypress(function(){
 			var dados = formulario.serialize();
 			if($('#login_senha').val().length < 6){
 				var n = noty({text: 'Senha deve conter no mínimo 6 caracteres.', type: 'error',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
-				removeTodos();
+				removeTodos(n);
 				$('#group_login_senha').addClass('has-error');
 			        $('#login_senha').focus(function(){
 			        	 $(this).select();
 			        	});
 			}
 			else {
-			$('#group_login_senha').addClas
 	        $.ajax({
 	          type: "POST",
 	          url: "acesso/logar",
 	          data: dados
 	        })
 	          .success(function( msg ) {
-	          	feedback(msg);
+	          	if(feedback(msg)){
+					setInterval(function(){
+		          		document.location = 'upload';
+						},3000);
+	          	}
           		//var n = noty({text: msg, type: 'error',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
 	          });
 	          event.preventDefault;
@@ -109,7 +117,7 @@ $('#cadastro_senha').keypress(function(){
 			var dados = formulario.serialize();
 			if($('#cadastro_senha').val().length < 6){
 				var n = noty({text: 'Senha deve conter no mínimo 6 caracteres.', type: 'error',shadow: false, styling: "bootstrap" , hide: true, delay: 500});
-				removeTodos();
+				removeTodos(n);
 				$('#group_cadastrar_senha').addClass('has-error');
 			        $('#cadastro_senha').focus(function(){
 			        	 $(this).select();
@@ -128,7 +136,7 @@ $('#cadastro_senha').keypress(function(){
 			          	if(feedback(msg)){
 						setInterval(function(){
 			          		document.location = 'upload';
-								},3500);
+								},3000);
 			          	}
 						$('#group-email').addClass('has-error');
 				        $('#group-email > input[name="email"]').focus(function(){

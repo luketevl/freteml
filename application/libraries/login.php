@@ -15,7 +15,9 @@ class Login{
 	}
 
 	public function criarSessao($e){
-		$this->session->set_userdata('id_ent',$e->id);
+	 	//echo "<pre>"; print_r($e); echo "</pre>";
+		$id = (empty($e->id))? $e->stored->id_usu : $e->id;
+		$this->session->set_userdata('id_ent',$id);
 		$this->session->set_userdata('nome_usu',$e->stored->nome_usu);
 		$this->session->set_userdata('email_usu',$e->stored->email_usu);
 		//echo "<pre>"; print_r($this->session->userdata); echo "</pre>";die;
