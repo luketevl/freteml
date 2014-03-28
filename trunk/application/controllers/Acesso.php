@@ -16,8 +16,11 @@ class Acesso extends CI_Controller{
 	 	// echo "<pre>"; print_r($_data); echo "</pre>";
 	 	$u = new Usuario();
 	 	$u = $u->verifica_login($_data['email'], $_data['senha']);
-//	 	echo "<pre>"; print_r($u); echo "</pre>";
 	 	if($u->exists()){
+//	 	echo "<pre>"; print_r($this->session->userdata); echo "</pre>";
+	 		$this->login->criarSessao($u);
+	 		$feedback['cod'] = '1';
+	 		$feedback['msg'] = 'Bem Vindo <strong>'.$u->nome_usu.'</strong>';
 	 	}
 	 	else {
 	 		$feedback['cod'] = '-1';

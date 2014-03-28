@@ -14,8 +14,12 @@
 	<blockquote class="bs-callout bs-callout-warning">
 	    <h4>Passo a Passo</h4>
 	    <ol>
-		    <li> Verifique se o conteúdo do seu arquivo esta na ordem certa <span class="glyphicon glyphicon-star"></span>
+		    <li> Baixe o arquivo para saber qual é o formato correto. <a href="<?php echo base_url()?>resources/txt/padrao.txt" data-toggle="tooltip" data-placement="top" data-original-title="Clique para baixar"> <span class="glyphicon glyphicon-download" target="_blank"></span> </a>
 		    </li>
+		    
+		    <li> Verifique se o conteúdo do seu arquivo esta na ordem certa.
+		    </li>
+		    
 		    <li> Insira arquivos no formato <abbr title="O CSV é um implementação particular de arquivos de texto separados por um delimitador" ><code>CSV</code></abbr>
 		    </li>
 		    <li> Clique no botão abaixo para inserir o arquivo.
@@ -62,7 +66,7 @@
 	    		<td>{altura}</td>
 	    		<td>{largura}</td>
 	    		<td>{diametro}</td>
-		    	<td><a href="<?php echo base_url();?>{calculadora}"><span class="glyphicon glyphicon-link"></span>  Gerar </a> </td>
+		    	<td><a href="#" title="<?php echo base_url();?>{calculadora}"><span class="glyphicon glyphicon-link"></span>  Gerar </a> </td>
 	    	</tr>
 	    {/linhas}
     </tbody>
