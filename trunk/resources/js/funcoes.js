@@ -24,6 +24,14 @@ $("#file-csv").uploadFile({
 	 dragDrop: true,
 	 returnType: "json",
 	 showDelete: true,
+	 onSuccess : function (){
+	 	var n = noty({text: 'Arquivo selecionado, aguarde montando dados.', type: 'success', shadow: false, styling: "bootstrap" , hide: true, delay: 500,
+			killer: true
+        });
+		setInterval(function(){
+		 	location.reload();
+			},3000);
+	 },
 	 deleteCallback: function (data, pd) {
      for (var i = 0; i < data.length; i++) {
          $.post("delete.php", {op: "delete",name: data[i]},

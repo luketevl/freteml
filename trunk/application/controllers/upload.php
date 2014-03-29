@@ -58,7 +58,7 @@ class Upload extends CI_Controller {
 			  }
 			
 			}
-			echo "<pre>"; print_r($ret); echo "</pre>";
+			//echo "<pre>"; print_r($ret); echo "</pre>";
 		    echo json_encode($ret);
 		 }
 }
@@ -81,12 +81,29 @@ class Upload extends CI_Controller {
 	}
 
 	public function ler_arquivo($id){
+		
+		
+		
 		$output_dir = "files/".$id.'/';
+		
+		$diretorio = dir($output_dir);
+		$i = 0;
+		while($arquivo = $diretorio->read()){
+				echo $i++;
+			echo $arquivo.' oi';
+		} 
+		 $diretorio->close();
+
 		$feedback = array();
-		$arquivo = 'arquivo.txt';
-		if(file_exists('resources/txt/'.$arquivo)){
+		$feedback['linhas'] = array();
+//		$arquivo = 'arquivo.txt';
+		/* 
+		echo ' '.$output_dir;
+		echo '<pre>'.print_r($diretorio); echo '</pre>';
+		*/
+		if(file_exists($output_dir.$arquivo)){
 			$i=0;
-			$handle = fopen('resources/txt/'.$arquivo, "r");
+			$handle = fopen($output_dir.$arquivo, "r");
 			$feedback['show_erros'] = true;
 			while ($userinfo = fscanf($handle, "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n")) {
 			 
