@@ -7,14 +7,13 @@
 	
 	<blockquote class="bs-callout bs-callout-info">
 	    <h4>Dica</h4>
-	    <p>Para auxiliar os , clique aqui para baixar o arquivo no formato correto.</p>
 	    <p>Para inserir a lista dos seus produtos siga o passo a passo abaixo.</p>
 	</blockquote>
 
 	<blockquote class="bs-callout bs-callout-warning">
 	    <h4>Passo a Passo</h4>
 	    <ol>
-		    <li> Baixe o arquivo para saber qual é o formato correto. <a href="<?php echo base_url()?>resources/txt/padrao.txt" data-toggle="tooltip" data-placement="top" data-original-title="Clique para baixar"> <span class="glyphicon glyphicon-download" target="_blank"></span> </a>
+		    <li> Baixe o arquivo para saber qual o formato correto. <a href="<?php echo base_url()?>resources/txt/padrao.txt" data-toggle="tooltip" data-placement="top" data-original-title="Clique para baixar" target="window"> <span class="glyphicon glyphicon-download" target="_blank"></span> </a>
 		    </li>
 		    
 		    <li> Verifique se o conteúdo do seu arquivo esta na ordem certa.
@@ -42,8 +41,8 @@
 	    <p>Você tem <span class="badge">{qtd_arquivos}</span> arquivo(s) em sua pasta</p>
 	</blockquote>
 </section>
-<div class="table-responsive table-striped">
-  <table class="table">
+<div class="table-responsive">
+  <table class="table table-striped">
     <thead>
     	<tr>
 	    	<th>Código</th>
