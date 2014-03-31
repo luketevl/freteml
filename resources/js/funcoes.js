@@ -57,4 +57,11 @@ $("#file-csv").uploadFile({
 		$('#grupoCep').removeClass('has-error');
 		$('#carrega').hide();
 	});
+
+if($('#qtd_arquivos').text() <= 0){
+	$('#opcoes_arquivo > li').each(function(){
+		$(this).addClass('disabled');
+	});
+}
+
 	});

@@ -88,9 +88,11 @@ class Upload extends CI_Controller {
 		
 		$diretorio = dir($output_dir);
 		$i = 0;
-		while($arquivo = $diretorio->read()){
-				echo $i++;
-			echo $arquivo.' oi';
+		$arquivo='';
+		while($arquivo2 = $diretorio->read()){
+				if(strpos($arquivo2,'.')){
+					$arquivo = $arquivo2;
+				}
 		} 
 		 $diretorio->close();
 
