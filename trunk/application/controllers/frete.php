@@ -10,7 +10,7 @@ class Frete extends CI_Controller{
 		$this->load->view('frete');
 	}
 	
-	public function lerArquivo($_GET){
+	public function lerArquivo(){
 		$cod_prod_get = $_GET['cod_prod'];
 		$this->cep_destino = str_replace('-', '', $_GET['cep']);
 		$largura_prod = 11;

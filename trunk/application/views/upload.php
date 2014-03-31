@@ -38,7 +38,23 @@
 
 	<blockquote class="bs-callout bs-callout-info">
 	    <h4>Seus Arquivos</h4>
-	    <p>Você tem <span class="badge">{qtd_arquivos}</span> arquivo(s) em sua pasta</p>
+	    <p>
+
+	    Você tem <span class="badge" id="qtd_arquivos">{qtd_arquivos}</span> arquivo(s) em sua pasta
+
+ <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+      Ações
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" id="opcoes_arquivo">
+      <li><a href="#">Ver Arquivo</a></li>
+      <li><a href="#">Baixar Arquivo</a></li>
+    </ul>
+
+
+
+	    </p>
 	</blockquote>
 </section>
 <div class="table-responsive">
@@ -53,6 +69,7 @@
 	    	<th>Largura</th>
 	    	<th>Diametro</th>
 	    	<th>Calculadora</th>
+	    	<th>Ver Frete</th>
     	</tr>
     </thead>
     <tbody>
@@ -65,7 +82,8 @@
 	    		<td>{altura}</td>
 	    		<td>{largura}</td>
 	    		<td>{diametro}</td>
-		    	<td><a href="#" title="<?php echo base_url();?>{calculadora}"><span class="glyphicon glyphicon-link"></span>  Gerar </a> </td>
+		    	<td><a href="#" title="<?php echo base_url();?>{calculadora}"><span class="glyphicon glyphicon-link"></span> Gerar </a> </td>
+		    	<td><a href="#" title="<?php echo base_url();?>{calculadora}"><span class="glyphicon glyphicon-usd"></span> Frete</a> </td>
 	    	</tr>
 	    {/linhas}
     </tbody>
