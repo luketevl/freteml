@@ -7,17 +7,55 @@ class Frete extends CI_Controller{
 
 
 	public function index(){
-		$this->load->view('frete');
+		$feedback 	= array();
+		$feedback['possui_parametros_mostra'] = 'display:none;';			
+		if(empty($_GET['cod_prod'])){
+			$feedback['possui_parametros'] = 'display:none;';
+			$feedback['possui_parametros_mostra'] = '';		
+			$feedback['possui_parametros_msg'] = '<code>Produto</code> não indicado';			
+		} 
+		else if(empty($_GET['cod_cli'])){
+			$feedback['possui_parametros'] = 'display:none;';
+			$feedback['possui_parametros_mostra'] = '';			
+			$feedback['possui_parametros_msg'] = '<code>Cliente</code> não indicado';			
+		}
+		$this->parser->parse('frete',$feedback);
 	}
 	
 	public function lerArquivo(){
+		$feedback 	= array();
+		if(empty($_GET['cod_prod'])){
+			$feedback['possui_parametros'] = 'display:none;';			
+			return $feedback;
+		} 
+		else if(empty($_GET['cod_cli'])){
+			$feedback['possui_parametros'] = 'display:none;';			
+			return $feedback;
+		}
 		$cod_prod_get = $_GET['cod_prod'];
-		$this->cep_destino = str_replace('-', '', $_GET['cep']);
+		$cod_cli_get = $_GET['cod_cli'];
+		
+		if(!empty($_GET['cep'])){
+			$this->cep_destino = str_replace('-', '', $_GET['cep']);
+		}
+
 		$largura_prod = 11;
-		$arquivo = $this->arquivoNome;
-		$feedback = array();
-		if(file_exists('resources/txt/'.$arquivo)){
-			$handle = fopen('resources/txt/'.$arquivo, "r");
+		
+//		$arquivo = $this->arquivoNome;
+
+		$output_dir = "files/".$cod_cli_get.'/';
+		
+		$diretorio = dir($output_dir);
+		$arquivo='';
+		while($arquivo2 = $diretorio->read()){
+				if(strpos($arquivo2,'.')){
+					$arquivo = $arquivo2;
+				}
+		} 
+
+		
+		if(file_exists($output_dir.$arquivo)){
+			$handle = fopen($output_dir.$arquivo, "r");
 			$feedback['show_erros'] = true;
 			while ($userinfo = fscanf($handle, "%s\t%s\t%s\t%s\t%s\t%s\t%s\n")) {
 			 //  echo "<pre>"; print_r(list ($cod_prod, $nome_prod, $peso_prod, $comprimento_prod, $altura_prod, $diametro_prod) = $userinfo); echo "</pre>";
