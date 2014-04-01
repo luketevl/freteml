@@ -51,8 +51,8 @@
     if(cep_cli.length == 9){
 	    $.ajax({
 			  type: "GET",
-			  url: "FreteML.php",
-			  data: { cep: cep_cli , cod_prod :  <?php echo $_GET['cod_prod'];?> }
+			  url: "frete",
+			  data: { cep: cep_cli , cod_cli :  <?php echo $_GET['cod_cli'];?> , cod_prod :  <?php echo $_GET['cod_prod'];?> }
 			})
 			  .success(function( msg ) {
 			  	if(msg.indexOf('bs-callout-warning') != '-1'){

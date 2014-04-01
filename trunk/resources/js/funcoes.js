@@ -47,7 +47,7 @@ $("#file-csv").uploadFile({
 
 	$(":file").bootstrapFileInput();
 	$('#cep').mask('99999-999');
-	$('#erros').hide();
+
 	$('#btnTentarNovamente').hide();
 
 	$('#btnTentarNovamente').click(function(){
