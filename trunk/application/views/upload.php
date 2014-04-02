@@ -48,8 +48,8 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" id="opcoes_arquivo">
-      <li><a href="#">Ver Arquivo</a></li>
-      <li><a href="#">Baixar Arquivo</a></li>
+      <li><a href="<?php echo base_url();?>files/<?php echo $this->session->userdata('id_ent');?>/{nome_arquivo}" target="window">Ver Arquivo</a></li>
+      <li><a href="<?php echo base_url();?>files/<?php echo $this->session->userdata('id_ent');?>/{nome_arquivo}" target="window">Baixar Arquivo</a></li>
     </ul>
 
 
@@ -82,8 +82,8 @@
 	    		<td>{altura}</td>
 	    		<td>{largura}</td>
 	    		<td>{diametro}</td>
-		    	<td><a href="#" title="<?php echo base_url();?>{calculadora}"><span class="glyphicon glyphicon-link"></span> Gerar </a> </td>
-		    	<td><a href="#" title="<?php echo base_url();?>{calculadora}"><span class="glyphicon glyphicon-usd"></span> Frete</a> </td>
+		    	<td><a href="#" title="{calculadora}"><span class="glyphicon glyphicon-link"></span> Gerar </a> </td>
+		    	<td><a href="{calculadora}" title="{calculadora}" target='_blank'><span class="glyphicon glyphicon-usd"></span> Frete</a> </td>
 	    	</tr>
 	    {/linhas}
     </tbody>

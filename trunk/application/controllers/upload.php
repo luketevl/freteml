@@ -25,6 +25,7 @@ class Upload extends CI_Controller {
 			redirect('Acesso');
 		}
 		else{
+	
 			$this->parser->parse('upload',$dados);
 		}
 		//echo "<pre>"; print_r($this->session->userdata); echo "</pre>";
@@ -81,22 +82,19 @@ class Upload extends CI_Controller {
 	}
 
 	public function ler_arquivo($id){
-		
-		
-		
+		$feedback = array();
 		$output_dir = "files/".$id.'/';
-		
+		$feedback['nome_arquivo'] = '';
 		$diretorio = dir($output_dir);
 		$i = 0;
 		$arquivo='';
 		while($arquivo2 = $diretorio->read()){
 				if(strpos($arquivo2,'.')){
 					$arquivo = $arquivo2;
+					$feedback['nome_arquivo'] = $arquivo;
 				}
 		} 
 		 $diretorio->close();
-
-		$feedback = array();
 		$feedback['linhas'] = array();
 //		$arquivo = 'arquivo.txt';
 		/* 
@@ -120,7 +118,7 @@ class Upload extends CI_Controller {
 				$feedback['linhas'][$i]['altura']=$altura_prod;
 				$feedback['linhas'][$i]['largura']=$largura_prod;
 				$feedback['linhas'][$i]['diametro']=$diametro_prod;
-				$feedback['linhas'][$i]['calculadora']=0;
+				$feedback['linhas'][$i]['calculadora']= base_url().'frete?cod_cli='.$this->session->userdata('id_ent').'&cod_prod='.$cod_prod;
 				$i++;
 			}
 			fclose($handle);
