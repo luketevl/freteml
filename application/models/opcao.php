@@ -129,15 +129,22 @@ class Opcao extends DataMapper {
 
  function existe_opcoes($id_usu){
  	$o = new Opcao();
- 	$o->where('id_usu',$id);
+ 	$o->where('id_usu',$id_usu);
  	return $o->get();
  }
 
-function inserir_Opcao($dados){
+function salvar($dados){
 	$o = new Opcao();
-	$o->cep_origem = $dados['cep_origem']
-	$o->id_usu=$this->session->userdata('id_ent');
-	$o->save();
+	//echo "<pre>"; print_r($dados); echo "</pre>";
+	$o->cep_origem = $dados['cep_origem'];
+	$o->id_usu = $dados['id_usu'];
+	if(!empty($dados['id_opc'])){
+		$o->where('id_opc', $dados['id_opc']);
+		$o->update($dados);
+}	else{
+		$o->save();
+	}
+	//echo "<pre>"; print_r($o); echo "</pre>";
 	return $o;	
 }
 

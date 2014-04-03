@@ -18,13 +18,34 @@ class Opcoes extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		if(!empty($this->session->userdata['id_ent'])){
+		$id = $this->session->userdata['id_ent'];
+		if(!empty($id)){
 			$dados = array();
-			$this->parser->parse('opcoes',$dados);
+			$o = new Opcao();
+			$o = $o->existe_opcoes($id);
+			$id_opc = $o->stored->id_opc;
+			$dados = $o->stored;
+			$this->parser->parse('opcoes',$dados);	
+		}
+			//echo "<pre>"; print_r($o); echo "</pre>";die;
+		else{
+			redirect('Acesso');
+		}
+	}
+
+	public function save(){
+		$_data = $this->input->post();
+		$_data['id_usu'] = $this->session->userdata('id_ent');
+		$o = new Opcao();
+		$o = $o->salvar($_data);
+		$id_opc = $o->stored->id_opc;
+		if(!empty($id_opc)){
+			redirect('upload');	
 		}
 		else{
-			$this->load->view('login_vw');
+			$this->index();
 		}
+
 	}
 }
 
