@@ -4,7 +4,7 @@ class Frete extends CI_Controller{
 	private $arquivoNome = 'arquivo.txt';
 	private $cep_origem = '30550720';
 	private $cep_destino = '';
-
+	private $feedback ;
 
 	public function index(){
 		$feedback 	= array();
@@ -19,11 +19,18 @@ class Frete extends CI_Controller{
 			$feedback['possui_parametros_mostra'] = '';			
 			$feedback['possui_parametros_msg'] = '<code>Cliente</code> não indicado';			
 		}
+		$feedback['exibe_fretes'] = 'display:none;';	
+		$feedback['exibe_erros'] = 'display:none;';	
+
+		  	 echo "<pre>"; print_r($feedback); echo "</pre>";
+		  	 
 		$this->parser->parse('frete',$feedback);
 	}
 	
 	public function lerArquivo(){
 		$feedback 	= array();
+		$o = new Opcao();
+		$o = $o->existe_opcoes($this->session->userdata('id_ent'));
 		if(empty($_GET['cod_prod'])){
 			$feedback['possui_parametros'] = 'display:none;';			
 			return $feedback;
@@ -34,10 +41,7 @@ class Frete extends CI_Controller{
 		}
 		$cod_prod_get = $_GET['cod_prod'];
 		$cod_cli_get = $_GET['cod_cli'];
-		
-		if(!empty($_GET['cep'])){
-			$this->cep_destino = str_replace('-', '', $_GET['cep']);
-		}
+		$this->cep_destino = str_replace('-', '', $o->stored->cep_origem);		
 
 		$largura_prod = 11;
 		
@@ -95,6 +99,22 @@ class Frete extends CI_Controller{
 		else{
 			$feedback['servico'] = false;
 		}
+
+		if(!empty($result['erros']) && $result['show_erros']){
+			$feedback['exibe_erros'] = '';
+		}
+		else{
+			$feedback['exibe_erros'] = 'display:none;';	
+		}
+		if(!empty($result['fretes'])){
+			$feedback['exibe_fretes'] = '';	
+		}
+		else{
+			$feedback['exibe_fretes'] = 'display:none;';	
+		}
+		  	 $this->parser->parse('frete',$feedback);
+
+		$this->feedback = $feedback;
 		return $feedback;
 	}
 
@@ -127,45 +147,7 @@ class Frete extends CI_Controller{
 	}
 }
 
-		$a = new Frete();
-		$result = $a->lerArquivo($_REQUEST);
+		//$a = new Frete();
+		//$result = $a->lerArquivo($_REQUEST);
 ?>
 
-	<?php
-		
-		if(!empty($result['fretes'])){
-	?>
-			<div class="list-group">
-	  			<a href="#" class="list-group-item active">
-    			<h4 class="list-group-item-heading">Fretes Disponíveis</h4>
-  			</a>
-
-	<?php
-			foreach ($result['fretes'] as $key => $value) {
-			?>
-			  <a href="#" class="list-group-item">
-			    <h4 class="list-group-item-heading"><?php echo $value['nome_frete'];?></h4>
-			    <p class="list-group-item-text">R$ <?php echo $value['valor'];?></p>
-			    <p class="list-group-item-text"><?php echo $value['prazo'];?> dias</p>
-			  </a>
-			<?php
-			} ?> 
-			</div>
-			<?php
-		}
-		if(!empty($result['erros']) && $result['show_erros']){
-			?>
-					<hgroup class="bs-callout bs-callout-warning" id="servicoErro">
-					    <h4> Possíveis Problemas </h4>
-			<?php
-					foreach ($result['erros'] as $key => $value) {
-					?>
-						<h5><?php echo $value['msg'];?></h5>
-					<?php
-						} 
-					?> 
-					</hgroup>
-					<?php
-				}
-		?>
-	
