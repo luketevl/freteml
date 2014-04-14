@@ -3,6 +3,11 @@
 ?>
 	<body>
 
+	<hgroup class="bs-callout bs-callout-danger" id="servicoError" style='{possui_parametros_mostra}'>
+			<h4> Cálculo do Frete </h4>
+			<h5>{possui_parametros_msg}.</h5>
+		 </hgroup>
+
 	<section id='content' style="{possui_parametros}">
 
 		<hgroup class="bs-callout bs-callout-info" id="servicoInfo">
@@ -18,7 +23,7 @@
 			
 		</section>
 		<button type="button" class="btn btn-default" id='btnTentarNovamente'>Tentar Novamente</button>	
- 		<form class="form-horizontal" role="form" id="lerArquivo" method="GET">
+ 		<form class="form-horizontal" role="form" id="lerArquivo" method="GET" action="lerArquivo">
 			 <div class="col-lg-3" id="camposFrete">
 			 <input type="hidden" name="cod_cli" value="<?php echo $_GET['cod_cli'];?>" />
 			 <input type="hidden" name="cod_prod" value="<?php echo $_GET['cod_prod'];?>" />
@@ -37,10 +42,6 @@
 
 </section>
 
-	<hgroup class="bs-callout bs-callout-danger" id="servicoError" style='{possui_parametros_mostra}'>
-			<h4> Cálculo do Frete </h4>
-			<h5>{possui_parametros_msg}.</h5>
-		 </hgroup>
 
 			<div class="list-group" style="{exibe_fretes}">
 	  			<a href="#" class="list-group-item active">

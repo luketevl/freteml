@@ -64,4 +64,9 @@ if($('#qtd_arquivos').text() <= 0){
 	});
 }
 
+$('#listar_arquivos').click(function(){
+	redirect('?listar_produtos=1');
+});
+
+
 	});
