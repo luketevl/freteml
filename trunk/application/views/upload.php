@@ -50,6 +50,7 @@
     <ul class="dropdown-menu" id="opcoes_arquivo">
       <li><a href="<?php echo base_url();?>files/<?php echo $this->session->userdata('id_ent');?>/{nome_arquivo}" target="window">Ver Arquivo</a></li>
       <li><a href="<?php echo base_url();?>files/<?php echo $this->session->userdata('id_ent');?>/{nome_arquivo}" target="window">Baixar Arquivo</a></li>
+      <li><a href="?listar_produtos=1">Listar Produtos</a></li>
     </ul>
 
 

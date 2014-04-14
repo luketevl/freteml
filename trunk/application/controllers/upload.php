@@ -19,7 +19,11 @@ class Upload extends CI_Controller {
 	 */
 	public function index(){
 		$dados= array();
-		$dados= $this->ler_arquivo($this->session->userdata('id_ent'));
+		$dados['linhas'] = array();
+		if(!empty($_GET['listar_produtos'])){
+			$dados= $this->ler_arquivo($this->session->userdata('id_ent'));
+		}
+		
 		$dados['qtd_arquivos'] = $this->contar_arquivos($this->session->userdata('id_ent'));
 		if(empty($this->session->userdata['id_ent'])){
 			redirect('Acesso');
@@ -105,21 +109,46 @@ class Upload extends CI_Controller {
 			$i=0;
 			$handle = fopen($output_dir.$arquivo, "r");
 			$feedback['show_erros'] = true;
-			while ($userinfo = fscanf($handle, "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n")) {
-			 
-			  // echo "<pre>"; print_r($userinfo); echo "</pre>";
-			  // echo "<pre>"; print_r(list ($cod_prod, $nome_prod, $peso_prod, $comprimento_prod, $altura_prod,$largura_prod ,$diametro_prod) = $userinfo); echo "</pre>";
-			   list ($cod_prod, $nome_prod, $peso_prod, $comprimento_prod, $altura_prod,$largura_prod ,$diametro_prod) = $userinfo;
-			  # echo "<pre>"; print_r(); echo "</pre>";
-				$feedback['linhas'][$i]['cod']=$cod_prod;
-				$feedback['linhas'][$i]['desc']=$nome_prod;
-				$feedback['linhas'][$i]['peso']=$peso_prod;
-				$feedback['linhas'][$i]['comprimento']=$comprimento_prod;
-				$feedback['linhas'][$i]['altura']=$altura_prod;
-				$feedback['linhas'][$i]['largura']=$largura_prod;
-				$feedback['linhas'][$i]['diametro']=$diametro_prod;
-				$feedback['linhas'][$i]['calculadora']= base_url().'frete?cod_cli='.$this->session->userdata('id_ent').'&cod_prod='.$cod_prod;
+			while (!feof($handle)) {
+				$linha = fgets($handle, 1024);  
+				$linha = explode(';',$linha);
+			#	echo "<pre>"; print_r($linha); echo "</pre>";
+				
+				$comprimento = trim($linha['3']);
+				if(empty($comprimento)){
+					$linha['3'] = 16;
+				}
+
+				$largura = trim($linha['5']);
+				if(empty($largura)){
+					$linha['5'] = 11;
+				}
+
+				$altura = trim($linha['4']);
+				if(empty($altura)){
+					$linha['4'] = 2;
+				}
+
+				$peso = trim($linha['2']);
+				if(empty($peso)){
+					$linha['2'] = 0;
+				}
+
+				$diametro = trim($linha['6']);
+				if(empty($diametro)){
+					$linha['6'] = 0;
+				}
+				
+				$feedback['linhas'][$i]['cod']             =$linha['0'];
+				$feedback['linhas'][$i]['desc']            =$linha['1'];
+				$feedback['linhas'][$i]['peso']            =$linha['2'];
+				$feedback['linhas'][$i]['comprimento']     =$linha['3'];
+				$feedback['linhas'][$i]['altura']          =$linha['4'];
+				$feedback['linhas'][$i]['largura']         =$linha['5'];
+				$feedback['linhas'][$i]['diametro']        =$linha['6']; 
+				$feedback['linhas'][$i]['calculadora']     = base_url().'frete/lerArquivo?cod_cli='.$this->session->userdata('id_ent').'&cod_prod='.$linha['0'];
 				$i++;
+				#echo "<pre>"; print_r($feedback); echo "</pre>";
 			}
 			fclose($handle);
 			$feedback['servico'] = true;
