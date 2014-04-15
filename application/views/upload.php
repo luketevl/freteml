@@ -19,6 +19,9 @@
 		    <li> Verifique se o conteúdo do seu arquivo esta na ordem certa.
 		    </li>
 		    
+		    <li> Salve o arquivo no <strong>excel</strong> com a opção <code>CSV (separado por <strong>vírgulas</strong>)</code> 
+		    </li>
+		    
 		    <li> Insira arquivos no formato <abbr title="O CSV é um implementação particular de arquivos de texto separados por um delimitador" ><code>CSV</code></abbr>
 		    </li>
 		    <li> Clique no botão abaixo para inserir o arquivo.
