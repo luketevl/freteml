@@ -44,7 +44,9 @@ class Acesso extends CI_Controller{
 	 	else{
 	 		$u = $u->inserir_usuario($_data);
 	 		$this->login->criarSessao($u);
-	 		mkdir('files/'.$u->id,0777);
+	 		if(!file_exists('files/'.$u->id)){
+		 		mkdir('files/'.$u->id,0777);
+	 		}
 	 		$feedback['cod'] = '1';
 	 		$feedback['msg'] = 'Usuário cadastrado com sucesso';
 	 	}
