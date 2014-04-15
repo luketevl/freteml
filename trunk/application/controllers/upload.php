@@ -26,7 +26,7 @@ class Upload extends CI_Controller {
 		
 		$dados['qtd_arquivos'] = $this->contar_arquivos($this->session->userdata('id_ent'));
 		if(empty($this->session->userdata['id_ent'])){
-			redirect('Acesso');
+			redirect('acesso');
 		}
 		else{
 	
