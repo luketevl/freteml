@@ -29,7 +29,7 @@ class Opcoes extends CI_Controller {
 		}
 			//echo "<pre>"; print_r($o); echo "</pre>";die;
 		else{
-			redirect('Acesso');
+			redirect('acesso');
 		}
 	}
 
