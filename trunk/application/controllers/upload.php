@@ -29,7 +29,18 @@ class Upload extends CI_Controller {
 			redirect('acesso');
 		}
 		else{
-	
+			$output_dir = "files/".$this->session->userdata('id_ent').'/';
+			$dados['nome_arquivo'] = '';
+			$diretorio = dir($output_dir);
+			$i = 0;
+			$arquivo='';
+			while($arquivo2 = $diretorio->read()){
+				if(strpos($arquivo2,'.')){
+					$arquivo = $arquivo2;
+					$dados['nome_arquivo'] = $arquivo;
+				}
+			}
+			$diretorio->close();
 			$this->parser->parse('upload',$dados);
 		}
 		//echo "<pre>"; print_r($this->session->userdata); echo "</pre>";
