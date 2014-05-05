@@ -86,7 +86,8 @@
 	    		<td>{altura}</td>
 	    		<td>{largura}</td>
 	    		<td>{diametro}</td>
-		    	<td><a href="#" title="{calculadora}"><span class="glyphicon glyphicon-link"></span> Gerar </a> </td>
+		    	<td><a href="#" title="{calculadora}"
+		    	 goto="<a href='{calculadora}' target= '_blank' > <img src='<?php echo base_url()?>resources/img/banner-frete.jpg ' /> </a>"> <span class="glyphicon glyphicon-link"></span> Gerar </a> </td>
 		    	<td><a href="{calculadora}" title="{calculadora}" target='_blank'><span class="glyphicon glyphicon-usd"></span> Frete</a> </td>
 	    	</tr>
 	    {/linhas}
