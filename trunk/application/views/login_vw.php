@@ -152,8 +152,8 @@ $('#cadastro_senha').keypress(function(){
 	});
 
 </script>
-	<body>
-	<hgroup class="bs-callout bs-callout-info">
+	
+	<hgroup class="bs-callout bs-callout-warning">
 	<h4> Entrar </h4>
 	<h5>Caso já possua cadastro em nosso site, <a href="#" id="openLogin">clique aqui</a> para entrar.</h5>
  
@@ -182,7 +182,7 @@ $('#cadastro_senha').keypress(function(){
 		</form>
 	</hgroup>
 
- <hgroup class="bs-callout bs-callout-info">
+ <hgroup class="bs-callout bs-callout-warning">
 	<h4> Cadastrar </h4>
 	<h5><a href="#" id="openCadastro"  data-toggle="tooltip" data-placement="bottom" data-original-title="Vamos lá, é rápido e fácil!!">Clique aqui</a> para se cadastrar em nosso site e ter acesso aos nossos recursos</h5>
 
@@ -226,5 +226,6 @@ $('#cadastro_senha').keypress(function(){
 		    </div>
 		</form>
 </hgroup>
-	</body>
-</html>
+<?php
+	require_once('includes/footer.php');
+?>

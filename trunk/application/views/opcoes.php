@@ -2,7 +2,7 @@
 	require_once('includes/head.php');
 ?>
 	<body>
-		<hgroup class="bs-callout bs-callout-info" id="configInfo">
+		<hgroup class="bs-callout bs-callout-warning" id="configInfo">
 			<h4> Opções do sistema </h4>
 			<h5>Para o correto funcionamento do sistema de frete é necessário a configuração dos itens abaixo, caso já tenha preenchido <a href="<?php echo base_url();?>upload">clique aqui</a>.</h5>
 		 </hgroup>
@@ -25,5 +25,6 @@
   </div>
 </form>
 
-	</body>
-</html>
+	<?php
+	require_once('includes/footer.php');
+?>

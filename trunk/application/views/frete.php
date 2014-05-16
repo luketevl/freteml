@@ -10,7 +10,7 @@
 
 	<section id='content' style="{possui_parametros}">
 
-		<hgroup class="bs-callout bs-callout-info" id="servicoInfo">
+		<hgroup class="bs-callout bs-callout-warning" id="servicoInfo">
 			<h4> Cálculo do Frete </h4>
 			<h5>O cálculo do frete é feito diretamente com os correios.</h5>
 		 </hgroup>
@@ -43,12 +43,10 @@
 </section>
 
 
-			<div class="list-group" style="{exibe_fretes}">
-	  			<a href="#" class="list-group-item active">
-    			<h4 class="list-group-item-heading">Fretes Disponíveis</h4>
-  			</a>
-
-
+			<div class="panel panel-warning" style="{exibe_fretes}; margin-top: 74px;">
+    			<div class="panel-heading">
+    				<h3 class="panel-title">Fretes Disponíveis</h3>
+    			</div>
 			{fretes}
 
 			  <a href="#" class="list-group-item">
@@ -59,7 +57,7 @@
 			{/fretes}
 			</div>
 		
-					<hgroup class="bs-callout bs-callout-warning" id="servicoErro" style="{exibe_erros}">
+					<hgroup class="bs-callout bs-callout-error" id="servicoErro" style="{exibe_erros}">
 					    <h4> Possíveis Problemas </h4>
 	
 					{erros}
@@ -70,10 +68,6 @@
 					
 					</hgroup>
 					
-				
-	
-	
-
-
-	</body>
-</html>
+<?php
+	require_once('includes/footer.php');
+?>
