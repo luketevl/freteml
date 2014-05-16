@@ -515,6 +515,13 @@ h1[id] {
 .bs-callout-info h4 {
 	color: #5bc0de
 }
+.bs-callout-yellow {
+	background-color: #FFCE13;
+	border-color: #E8900C
+}
+.bs-callout-yellow h4 {
+	color: #E8900C
+}
 .color-swatches {
 	margin: 0 -5px;
 	overflow: hidden

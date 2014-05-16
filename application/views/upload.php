@@ -5,7 +5,7 @@
 
 <section style="float:left;width:100%;">
 	
-	<blockquote class="bs-callout bs-callout-info">
+	<blockquote class="bs-callout bs-callout-warning">
 	    <h4>Dica</h4>
 	    <p>Para inserir a lista dos seus produtos siga o passo a passo abaixo.</p>
 	</blockquote>
@@ -33,13 +33,13 @@
 		        <div class="navbar-header">
 		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3">
 		          </button>
-		          <a class="navbar-brand" href="#">Local do Arquivo</a>
+		          <a class="navbar-brand text-warning" href="#">Local do Arquivo</a>
 		        </div>
 			         <input type="file" style="left: -247.5px; top: 0px;" title="<span class='glyphicon glyphicon-plus'></span> Escolher Arquivo" accept="csv" id="file-csv" />
 		      </div>
 	 </form>
 
-	<blockquote class="bs-callout bs-callout-info">
+	<blockquote class="bs-callout bs-callout-warning">
 	    <h4>Seus Arquivos</h4>
 	    <p>
 
@@ -94,5 +94,6 @@
     </tbody>
   </table>
 </div>
-	</body>
-</html>
+	<?php
+	require_once('includes/footer.php');
+?>
