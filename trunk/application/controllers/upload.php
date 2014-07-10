@@ -125,39 +125,40 @@ class Upload extends CI_Controller {
 				$linha = explode(';',$linha);
 			#	echo "<pre>"; print_r($linha); echo "</pre>";
 				
-				$comprimento = trim($linha['3']);
+				$comprimento = (isset($linha['3'])) ? trim($linha['3']) : '0';
 				if(empty($comprimento)){
 					$linha['3'] = 16;
 				}
 
-				$largura = trim($linha['5']);
+				$largura = (isset($linha['5'])) ? trim($linha['5']) : '0';
 				if(empty($largura)){
 					$linha['5'] = 11;
 				}
 
-				$altura = trim($linha['4']);
+				$altura = (isset($linha['4'])) ? trim($linha['4']) : '0';
 				if(empty($altura)){
 					$linha['4'] = 2;
 				}
 
-				$peso = trim($linha['2']);
+				$peso = (isset($linha['2'])) ? trim($linha['2']) : '0';
 				if(empty($peso)){
 					$linha['2'] = 0;
 				}
 
-				$diametro = trim($linha['6']);
+				$diametro = (isset($linha['6'])) ? trim($linha['6']) : '0';
 				if(empty($diametro)){
 					$linha['6'] = 0;
 				}
 				
-				$feedback['linhas'][$i]['cod']             =$linha['0'];
-				$feedback['linhas'][$i]['desc']            =$linha['1'];
-				$feedback['linhas'][$i]['peso']            =$linha['2'];
-				$feedback['linhas'][$i]['comprimento']     =$linha['3'];
-				$feedback['linhas'][$i]['altura']          =$linha['4'];
-				$feedback['linhas'][$i]['largura']         =$linha['5'];
-				$feedback['linhas'][$i]['diametro']        =$linha['6']; 
-				$feedback['linhas'][$i]['calculadora']     = base_url().'frete/lerArquivo?cod_cli='.$this->session->userdata('id_ent').'&cod_prod='.$linha['0'];
+				$feedback['linhas'][$i]['cod']             =(isset($linha['0'])) ? trim($linha['0']) : '0';
+				$feedback['linhas'][$i]['desc']            =(isset($linha['1'])) ? trim($linha['1']) : '0';
+				$feedback['linhas'][$i]['peso']            =(isset($linha['2'])) ? trim($linha['2']) : '0';
+				$feedback['linhas'][$i]['comprimento']     =(isset($linha['3'])) ? trim($linha['3']) : '0';
+				$feedback['linhas'][$i]['altura']          =(isset($linha['4'])) ? trim($linha['4']) : '0';
+				$feedback['linhas'][$i]['largura']         =(isset($linha['5'])) ? trim($linha['5']) : '0';
+				$feedback['linhas'][$i]['diametro']        =(isset($linha['6'])) ? trim($linha['6']) : '0';
+				$linhazero								   =(isset($linha['0'])) ? trim($linha['0']) : '0';
+				$feedback['linhas'][$i]['calculadora']     = base_url().'frete/lerArquivo?cod_cli='.$this->session->userdata('id_ent').'&cod_prod='.$linhazero;
 				$i++;
 				#echo "<pre>"; print_r($feedback); echo "</pre>";
 			}
