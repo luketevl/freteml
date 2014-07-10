@@ -103,6 +103,8 @@ class Upload extends CI_Controller {
 		$diretorio = dir($output_dir);
 		$i = 0;
 		$arquivo='';
+		ini_set('display_errors', 0 );
+		error_reporting(0);
 		while($arquivo2 = $diretorio->read()){
 				if(strpos($arquivo2,'.')){
 					$arquivo = $arquivo2;
@@ -125,15 +127,15 @@ class Upload extends CI_Controller {
 				$linha = explode(';',$linha);
 			#	echo "<pre>"; print_r($linha); echo "</pre>";
 				
-				$comprimento = @(isset($linha['3'])) ? trim($linha['3']) : '16';
+				$comprimento = (isset($linha['3'])) ? trim($linha['3']) : '16';
 
-				$largura = @(isset($linha['5'])) ? trim($linha['5']) : '11';
+				$largura = (isset($linha['5'])) ? trim($linha['5']) : '11';
 
-				$altura = @(isset($linha['4'])) ? trim($linha['4']) : '2';
+				$altura = (isset($linha['4'])) ? trim($linha['4']) : '2';
 
-				$peso = @(isset($linha['2'])) ? trim($linha['2']) : '0';
+				$peso = (isset($linha['2'])) ? trim($linha['2']) : '0';
 
-				$diametro = @(isset($linha['6'])) ? trim($linha['6']) : '0';
+				$diametro = (isset($linha['6'])) ? trim($linha['6']) : '0';
 				
 				$feedback['linhas'][$i]['cod']             =(isset($linha['0'])) ? trim($linha['0']) : '0';
 				$feedback['linhas'][$i]['desc']            =(isset($linha['1'])) ? trim($linha['1']) : '0';
