@@ -117,6 +117,7 @@ class Frete extends CI_Controller{
 					 #  	echo "<br /><br /><br /><br /><br />".$servico . "<br /><br /><br /><br /><br /><br />";
 
 					   	$xml = simplexml_load_file($servico);
+					   	#echo "<pre>";print_r($xml);echo "</pre>";
 						foreach ($xml->cServico as $key=>$v) {
 							if($v->Valor != '0,00'){
 								$feedback['show_erros'] = false;
