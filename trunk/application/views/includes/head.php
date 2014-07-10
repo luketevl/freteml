@@ -40,7 +40,7 @@
 		<script src="<?php echo base_url()?>resources/js/jquery.MultiFile.js "></script>
 
 		<script src="<?php echo base_url()?>resources/js/jquery-upload.js "></script>
-
+		
 		<script src="<?php echo base_url()?>resources/js/funcoes.js"></script>
 
 
@@ -52,7 +52,7 @@
 	    $.ajax({
 			  type: "GET",
 			  url: "frete",
-			  data: { cep: cep_cli , cod_cli :  <?php echo $_GET['cod_cli'];?> , cod_prod :  <?php echo $_GET['cod_prod'];?> }
+			  data: { cep: cep_cli , cod_cli :  <?php echo isset($_GET['cod_cli'])?$_GET['cod_cli']:'0';?> , cod_prod :  <?php echo isset($_GET['cod_prod'])? $_GET['cod_prod']:'0';?> }
 			})
 			  .success(function( msg ) {
 			  	if(msg.indexOf('bs-callout-warning') != '-1'){
