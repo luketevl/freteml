@@ -29,6 +29,11 @@ class Upload extends CI_Controller {
 			redirect('acesso');
 		}
 		else{
+			$o = new Opcao();
+			$o = $o->existe_opcoes($this->session->userdata('id_ent'));
+			if(empty($o) || ! $o->stored->id_opc > 0){
+				redirect('opcoes');
+			}			
 			$output_dir = "files/".$this->session->userdata('id_ent').'/';
 			$dados['nome_arquivo'] = '';
 			$diretorio = dir($output_dir);

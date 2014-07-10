@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	$('a').tooltip();
-	$('calculadora_btn').popover('toggle');
 	/*
 	$('#file-csv').MultiFile({
 		afterFileAppend: function(element, value, master_element){ 
