@@ -118,16 +118,18 @@ class Frete extends CI_Controller{
 
 					   	$xml = simplexml_load_file($servico);
 					   	#echo "<pre>";print_r($xml);echo "</pre>";
+						$i=0;
 						foreach ($xml->cServico as $key=>$v) {
 							if($v->Valor != '0,00'){
 								$feedback['show_erros'] = false;
-								$feedback['fretes'][$key]['nome_frete'] =$this->converteServico($v->Codigo);
-								$feedback['fretes'][$key]['prazo'] = $v->PrazoEntrega;
-								$feedback['fretes'][$key]['valor'] = $v->Valor;
+								$feedback['fretes'][$i]['nome_frete'] =$this->converteServico($v->Codigo);
+								$feedback['fretes'][$i]['prazo'] = $v->PrazoEntrega;
+								$feedback['fretes'][$i]['valor'] = $v->Valor;
 							}
 							else{
-								$feedback['erros'][$key]['msg'] = $v->MsgErro;
+								$feedback['erros'][$i]['msg'] = $v->MsgErro;
 							}
+							$i++;
 						}
 					 #  	 echo "<pre>"; print_r($xml); echo "</pre>";
 
@@ -156,6 +158,7 @@ class Frete extends CI_Controller{
 			}
 		}
 		$feedback['possui_parametros_mostra'] = 'display:none';
+			#echo "<pre>";print_r($feedback);echo "</pre>";
 		  	 $this->parser->parse('frete',$feedback);
 	}
 
