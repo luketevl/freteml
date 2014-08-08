@@ -125,6 +125,7 @@ class Upload extends CI_Controller {
 			$i=0;
 			$handle = fopen($output_dir.$arquivo, "r");
 			$feedback['show_erros'] = true;
+			$produtos =  new Produtos();
 			while (!feof($handle)) {
 				$linha = fgets($handle, 1024);  
 				$linha = explode(';',$linha);
@@ -148,6 +149,8 @@ class Upload extends CI_Controller {
 				$feedback['linhas'][$i]['diametro']        =(isset($linha['6'])) ? trim($linha['6']) : '0';
 				$linhazero								   =(isset($linha['0'])) ? trim($linha['0']) : '0';
 				$feedback['linhas'][$i]['calculadora']     = base_url().'frete/lerArquivo?cod_cli='.$this->session->userdata('id_ent').'&cod_prod='.$linhazero;
+				$feedback['linhas'][$i]['id_usu']     = $this->session->userdata('id_ent');
+				$produtos->inserir_produto($feedback['linhas'][$i]);
 				$i++;
 				#echo "<pre>"; print_r($feedback); echo "</pre>";
 			}

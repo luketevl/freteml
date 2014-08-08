@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1';
-//$db['default']['hostname'] = 'mysqlrds.ceiuxagfbyao.us-west-2.rds.amazonaws.com';
+#$db['default']['hostname'] = '127.0.0.1';
+$db['default']['hostname'] = 'mysqlrds.ceiuxagfbyao.us-west-2.rds.amazonaws.com';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
-//$db['default']['password'] = 'segredo157';
+#$db['default']['password'] = '';
+$db['default']['password'] = 'segredo157';
 $db['default']['database'] = 'freteml';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

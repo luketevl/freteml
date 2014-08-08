@@ -9,16 +9,17 @@ class Frete extends CI_Controller{
 	public function index(){
 		$feedback 	= array();
 
-		if(empty($_GET['cod_prod'])){
+		if(empty($_GET['cod_cli'])){
+			$feedback['possui_parametros'] = 'display:none;';
+			$feedback['erro_cliente'] = 'display:none;';
+			$feedback['possui_parametros_mostra'] = '';			
+			$feedback['possui_parametros_msg'] = '<code>Cliente</code> não indicado';			
+		}
+		else if(empty($_GET['cod_prod'])){
 			$feedback['possui_parametros'] = 'display:none;';
 			$feedback['possui_parametros_mostra'] = '';		
 			$feedback['possui_parametros_msg'] = '<code>Produto</code> não indicado';			
 		} 
-		else if(empty($_GET['cod_cli'])){
-			$feedback['possui_parametros'] = 'display:none;';
-			$feedback['possui_parametros_mostra'] = '';			
-			$feedback['possui_parametros_msg'] = '<code>Cliente</code> não indicado';			
-		}
 		else if(empty($_GET['cep'])){
 			$feedback['possui_parametros_mostra'] = '';			
 			$feedback['possui_parametros_msg'] = '<code>CEP</code> não indicado';			
