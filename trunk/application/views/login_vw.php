@@ -83,6 +83,7 @@ $('#cadastro_senha').keypress(function(){
 		});
 
 		$('#login').submit(function(event){
+		      event.preventDefault;
 			var formulario = $('form#login');
 			var dados = formulario.serialize();
 			if($('#login_senha').val().length < 6){
@@ -114,6 +115,7 @@ $('#cadastro_senha').keypress(function(){
 
 		$('#cadastrar').submit(function(event){
 			var formulario = $('form#cadastrar');
+			console.log(formulario);
 			var dados = formulario.serialize();
 			if($('#cadastro_senha').val().length < 6){
 				var n = noty({text: 'Senha deve conter no mínimo 6 caracteres.', type: 'error',shadow: false, styling: "bootstrap" , hide: true, delay: 500});

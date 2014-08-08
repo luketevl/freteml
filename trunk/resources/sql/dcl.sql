@@ -18,3 +18,15 @@ create database freteml;
 		foreign key(id_usu) references usuarios(id_usu)
 	)engine=MYiSAM;
 	
+	create table produtos(
+		id_prod int UNSIGNED AUTO_INCREMENT  PRIMARY KEY NOT NULL,
+		cod int null,
+		desc text null,
+		comprimento double(5,3) null,
+		largura double(5,3) null,
+		peso double(5,3) null,
+		altura double(5,3) null,
+		diametro double(5,3) null,
+		id_usu int not null,
+		foreign key(id_usu) references usuarios(id_usu)
+	)engine=MYiSAM;

@@ -15,7 +15,7 @@
 			<h5>O cálculo do frete é feito diretamente com os correios.</h5>
 		 </hgroup>
 		 <hgroup class="bs-callout bs-callout-danger" id="servicoErro" style="display:none;">
-		     <h4>Serviço Indisponível</h4>
+		     <h4>Serviço Indisponível</h4>Generated HTML markup for suggestions is displayed bellow. You may style it any way you'd like.
 			 <h5>No momento não é possível carregar o frete deste produto.</h5>
 		 </hgroup>
 
@@ -67,6 +67,21 @@
 						 {/erros}
 					
 					</hgroup>
+					
+		<hgroup class="bs-callout bs-callout-warning" id="indicarProduto" style="{erro_cliente}">
+			<h4> Cálculo do Frete </h4>
+			<h5>Para calcular o <code>frete</code> digite o <code>nome do produto</code> no campo abaixo</h5>
+			<form class="form-horizontal" role="form" id="login" method="POST">
+			<div class="form-group" id="group-email-login">
+				<div class="input-group">
+				  <span class="input-group-addon">
+					<span class="glyphicon glyphicon-search"></span>
+				  </span>
+				  				  <input type="text" class="form-control" placeholder="Digite o NOME do produto" name="country" required id="autocomplete-dynamic" >
+				</div>
+			</div>
+		</form>
+		 </hgroup>
 					
 <?php
 	require_once('includes/footer.php');

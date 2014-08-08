@@ -38,10 +38,15 @@
 		<script src="<?php echo base_url()?>resources/js/jquery.tools.min.js "></script>
 		<script src="<?php echo base_url()?>resources/js/bootstrap-filestyle.js "></script>
 		<script src="<?php echo base_url()?>resources/js/jquery.MultiFile.js "></script>
-
 		<script src="<?php echo base_url()?>resources/js/jquery-upload.js "></script>
 		
-		<script src="<?php echo base_url()?>resources/js/funcoes.js"></script>
+		<script src="<?php echo base_url()?>resources/js/jquery.mockjax.js"></script>
+		<script src="<?php echo base_url()?>resources/js/jquery.autocomplete.min.js"></script>
+		<script src="<?php echo base_url()?>resources/js/countries.js"></script>
+		<script src="<?php echo base_url()?>resources/js/jquery.autocomplete.min.js"></script>
+		<script src="<?php echo base_url()?>resources/js/demo.js"></script>
+	
+			<script src="<?php echo base_url()?>resources/js/funcoes.js"></script>
 
 
 <script>
