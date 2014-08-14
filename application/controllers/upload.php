@@ -46,6 +46,9 @@ class Upload extends CI_Controller {
 				}
 			}
 			$diretorio->close();
+
+			$dados['link_calculadora'] = '<a href="'.base_url().'frete?cod_cli='.$this->session->userdata('id_ent'). '" target= "_blank" > <img src="'.base_url().'/resources/img/banner-frete.jpg" /> </a>';	
+			$dados['link_calculadora_copia'] = htmlentities($dados['link_calculadora']);
 			$this->parser->parse('upload',$dados);
 		}
 		//echo "<pre>"; print_r($this->session->userdata); echo "</pre>";
