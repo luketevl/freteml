@@ -54,10 +54,8 @@
       <li><a href="<?php echo base_url();?>files/<?php echo $this->session->userdata('id_ent');?>/{nome_arquivo}" target="window">Ver Arquivo</a></li>
       <li><a href="<?php echo base_url();?>files/<?php echo $this->session->userdata('id_ent');?>/{nome_arquivo}" target="window">Baixar Arquivo</a></li>
       <li><a href="?listar_produtos=1">Listar Produtos</a></li>
+      <li><a href="" data-toggle="modal" data-target="#myModal">Copiar Calculadora</a></li>
     </ul>
-
-
-
 	    </p>
 	</blockquote>
 </section>
@@ -93,6 +91,27 @@
 	    {/linhas}
     </tbody>
   </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Fechar</span></button>
+        <h4 class="modal-title" id="myModalLabel">Calculadora para o Frete</h4>
+      </div>
+      <div class="modal-body">
+        <center>{link_calculadora}</center>
+        <hr />
+        <h4>Copie o código abaixo para utilizar a calculador em outros sites.</h4>
+        <p>{link_calculadora_copia}<p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
 </div>
 	<?php
 	require_once('includes/footer.php');
