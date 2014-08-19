@@ -128,14 +128,11 @@ class Produtos extends DataMapper {
 
 
  function get_todos_produtos(){
- 	$p = new Produtos();
- 	return $p->get();
+ 	return $this->db->query('select p.id_prod as value, p.desc as label from produtos p')->result_array();
  }
 
 function get_like_nome_produto($valor){
- 	$p = new Produtos();
- 	$p->like('nome_prod',$valor);
- 	return $p->get();
+ return $this->db->query('select p.id_prod as value, p.desc as label from produtos p where p.desc like "%'.$valor.'%"')->result_array();
  } 
 
 function inserir_produto($dados){

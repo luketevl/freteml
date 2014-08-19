@@ -77,12 +77,33 @@
 				  <span class="input-group-addon">
 					<span class="glyphicon glyphicon-search"></span>
 				  </span>
-				  				  <input type="text" class="form-control" placeholder="Digite o NOME do produto" name="country" required id="autocomplete-dynamic" >
+				  				  <input type="text" class="form-control" placeholder="Digite o NOME do produto" name="country" required id="search" >
 				</div>
 			</div>
 		</form>
 		 </hgroup>
-					
+
+					<script>
+					$(function() {
+
+	$( "#search" ).autocomplete(
+	{
+		source: "frete/autosuggest_produtos",
+		type: "json",
+		select: function( event, ui ) {
+			$( "#search" ).val( ui.item.desc + " / " + ui.item.id_prod );
+			return false;
+		}
+	}).data( "autocomplete" )._renderItem = function( ul, item ) {
+		return $( "<li></li>" )
+			.data( "item.autocomplete", item )
+			.append( "<a><strong>" + item.desc + "</strong> / " + item.id_prod + "</a>" )
+			.appendTo( ul );
+		};		
+
+});
+
+  </script>
 <?php
 	require_once('includes/footer.php');
 ?>

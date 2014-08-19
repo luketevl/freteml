@@ -190,5 +190,12 @@ class Frete extends CI_Controller{
 				break;
 		}
 	}
+
+	function autosuggest_produtos(){
+		$p = new Produtos();
+		echo json_encode($p->get_like_nome_produto($_REQUEST['term']));
+		//echo json_encode($p->get_todos_produtos());
+	//echo '[{"label":"Arwen", "actor":"Liv Tyler"}]';
+	}
 }
 ?>
