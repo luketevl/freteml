@@ -77,7 +77,8 @@
 				  <span class="input-group-addon">
 					<span class="glyphicon glyphicon-search"></span>
 				  </span>
-				  				  <input type="text" class="form-control" placeholder="Digite o NOME do produto" name="country" required id="search" >
+				   <input type="text" class="form-control" placeholder="Digite o NOME do produto" name="country" required id="search" >
+				   <input type="hidden" id="id_prod" value="" />
 				</div>
 			</div>
 		</form>
@@ -90,8 +91,17 @@
 	{
 		source: "frete/autosuggest_produtos",
 		type: "json",
+		change: function( event, ui ) {
+
+			$('#id_prod').val(ui.item == null? '': ui.item.value);
+			$('#search').val(ui.item == null? '': ui.item.label);
+			if(ui.item != null){
+				$(window.document.location).attr('href',"frete/?cod_cli=3&cod_prod="+ui.item.value);
+			}
+		},
 		select: function( event, ui ) {
-			$( "#search" ).val( ui.item.desc + " / " + ui.item.id_prod );
+			$( "#search" ).val( ui.item.label);
+			$('#id_prod').val(ui.item.value);
 			return false;
 		}
 	}).data( "autocomplete" )._renderItem = function( ul, item ) {

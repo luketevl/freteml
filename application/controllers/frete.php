@@ -22,7 +22,8 @@ class Frete extends CI_Controller{
 		} 
 		else if(empty($_GET['cep'])){
 			$feedback['possui_parametros_mostra'] = '';			
-			$feedback['possui_parametros_msg'] = '<code>CEP</code> não indicado';			
+			$feedback['possui_parametros_msg'] = '<code>CEP</code> não indicado';
+			$feedback['erro_cliente'] = 'display:none;';			
 		}
 		$feedback['exibe_fretes'] = 'display:none;';	
 		$feedback['exibe_erros'] = 'display:none;';	
@@ -38,6 +39,7 @@ class Frete extends CI_Controller{
 		$feedback['erros'] = array();
 		$feedback['exibe_fretes'] = 'display:none;';	
 		$feedback['exibe_erros'] = 'display:none;';	
+		$feedback['erro_cliente'] = 'display:none;';
 		$o = $o->existe_opcoes($this->session->userdata('id_ent'));
 		if(empty($_GET['cod_prod'])){
 			$feedback['possui_parametros'] = 'display:none;';			
