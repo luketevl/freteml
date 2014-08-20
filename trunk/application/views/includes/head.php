@@ -79,6 +79,7 @@
 		});
     }
     else{
+    	event.preventDefault();
     	$('#grupoCep').addClass('has-error');
     	$('#cep').focus();
     }
@@ -90,7 +91,7 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <style>
   .ui-autocomplete-loading {
-    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+    background: white url("resources/img/ui-anim_basic_16x16.gif") right center no-repeat;
   }
   #city { width: 25em; }
   </style>
