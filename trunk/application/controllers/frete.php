@@ -8,7 +8,9 @@ class Frete extends CI_Controller{
 
 	public function index(){
 		$feedback 	= array();
-
+		$p = new Produtos();
+		$feedback['possui_produto_indicado'] = 'display:none;';
+		
 		if(empty($_GET['cod_cli'])){
 			$feedback['possui_parametros'] = 'display:none;';
 			$feedback['erro_cliente'] = 'display:none;';
@@ -24,6 +26,14 @@ class Frete extends CI_Controller{
 			$feedback['possui_parametros_mostra'] = '';			
 			$feedback['possui_parametros_msg'] = '<code>CEP</code> não indicado';
 			$feedback['erro_cliente'] = 'display:none;';			
+		}
+		if(!empty($_GET['cod_prod'])){
+			$dados_prod = $p->get_produto_by_id($_GET['cod_prod']);
+			#echo "<pre>";print_r($dados_prod);echo "</pre>";
+			if(!empty($dados_prod)){
+				$feedback['dados_produtos'] = $dados_prod;
+				$feedback['possui_produto_indicado'] = '';
+			}
 		}
 		$feedback['exibe_fretes'] = 'display:none;';	
 		$feedback['exibe_erros'] = 'display:none;';	
