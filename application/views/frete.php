@@ -19,6 +19,13 @@
 			 <h5>No momento não é possível carregar o frete deste produto.</h5>
 		 </hgroup>
 
+		 <hgroup class="bs-callout bs-callout-info" id="nomedoProduto" style="{possui_produto_indicado}">
+		     <h4>Produto Selecionado</h4>
+			{dados_produtos}
+			     <h5>{desc}</h5>
+		     {/dados_produtos}
+		 </hgroup>
+
 		<section id="erros">
 			
 		</section>
