@@ -64,7 +64,7 @@
 			{/fretes}
 			</div>
 		
-					<hgroup class="bs-callout bs-callout-error" id="servicoErro" style="{exibe_erros}">
+					<hgroup class="bs-callout bs-callout-danger" id="servicoErro" style="{exibe_erros}">
 					    <h4> Possíveis Problemas </h4>
 	
 					{erros}
