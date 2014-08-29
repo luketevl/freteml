@@ -1,6 +1,5 @@
 <?php
 	require_once('includes/head.php');
-	$this->load->view('logout');
 ?>
 
 <section style="float:left;width:100%;">
@@ -53,7 +52,7 @@
     <ul class="dropdown-menu" id="opcoes_arquivo">
       <li><a href="<?php echo base_url();?>files/<?php echo $this->session->userdata('id_ent');?>/{nome_arquivo}" target="window">Ver Arquivo</a></li>
       <li><a href="<?php echo base_url();?>files/<?php echo $this->session->userdata('id_ent');?>/{nome_arquivo}" target="window">Baixar Arquivo</a></li>
-      <li><a href="?listar_produtos=1">Listar Produtos</a></li>
+      <li "{disabled_listar}" ><a href="?listar_produtos=1">Listar Produtos</a></li>
       <li><a href="" data-toggle="modal" data-target="#myModal">Copiar Calculadora</a></li>
     </ul>
 	    </p>

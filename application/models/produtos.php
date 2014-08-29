@@ -130,6 +130,11 @@ function get_produto_by_id($id){
  	return $this->db->query('select * from produtos p where p.id_prod = '.$id)->result_array();
  }
 
+function get_produto_by_id_usu($id){
+ 	return $this->db->query('select * from produtos p where p.id_usu = '.$id)->result_array();
+ }
+
+
  function get_todos_produtos(){
  	return $this->db->query('select p.id_prod as value, p.desc as label from produtos p')->result_array();
  }

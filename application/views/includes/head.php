@@ -97,8 +97,13 @@
   </style>
 	</head>
 <body>
-<head>
+<header>
 <section id="logo">
 	<img src="<?php echo base_url()?>resources/img/logo.png" />
 </section>
-</head>
+</header>
+<?php 
+	if(!empty($this->session->userdata['id_ent'])){
+		$this->load->view('logout');
+	}
+?>
