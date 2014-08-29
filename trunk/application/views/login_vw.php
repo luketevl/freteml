@@ -56,9 +56,9 @@
 		$('input[name="email"]').keypress(function(){
 			//$(this).parent('#group-email');
 			//console.log($(this).parent('#group-email'));
-			console.log(this);
+			
 			var elemento = $(this).parents('.form-group');
-			console.log(elemento);
+			
 			$(elemento).removeClass('has-error');
 		});
 

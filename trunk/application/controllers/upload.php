@@ -21,7 +21,7 @@ class Upload extends CI_Controller {
 		$dados= array();
 		$dados['linhas'] = array();
 		if(!empty($_GET['listar_produtos'])){
-			$dados= $this->ler_arquivo($this->session->userdata('id_ent'));
+			$dados= $this->exibir_produtos($this->session->userdata('id_ent'));
 		}
 		
 		$dados['qtd_arquivos'] = $this->contar_arquivos($this->session->userdata('id_ent'));
@@ -165,7 +165,16 @@ class Upload extends CI_Controller {
 		}
 		return $feedback;
 	}
-
+	function exibir_produtos($id_usu){
+		$p = new Produtos();
+		$dados_prod = $p->get_produto_by_id_usu($id_usu);
+			$feedback['disabled_listar'] = !empty($dados_prod)? '':'disabled';
+		foreach ($dados_prod as $key => &$value) {
+			$dados_prod[$key]['calculadora'] = base_url().'frete/lerArquivo?cod_cli='.$this->session->userdata('id_ent').'&cod_prod='.$dados_prod[$key]['cod'];
+		}
+		$feedback['linhas'] = $dados_prod;
+		return $feedback;
+	}
 
 }
 
